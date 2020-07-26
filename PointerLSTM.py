@@ -57,8 +57,7 @@ class PointerLSTM(keras.layers.Layer):
     """
 
     def __init__(self, hidden_dimensions, name='pointer', **kwargs):
-        super(PointerLSTM, self).__init__(
-            hidden_dimensions, name=name, **kwargs)
+        super(PointerLSTM, self).__init__(hidden_dimensions, name=name, **kwargs)
         self.hidden_dimensions = hidden_dimensions
         self.attention = Attention(hidden_dimensions)
         self.decoder = Decoder(hidden_dimensions)

@@ -2,7 +2,7 @@ from keras.models import Model
 from keras.layers import LSTM, Input
 from keras.callbacks import LearningRateScheduler
 from keras.utils.np_utils import to_categorical
-from pointer import PointerLSTM
+from PointerLSTM import PointerLSTM
 import pickle
 import tsp_data as tsp
 import numpy as np
@@ -19,7 +19,7 @@ def scheduler(epoch):
 print("preparing dataset...")
 t = tsp.Tsp()
 X, Y = t.next_batch(10000)
-x_test, y_test = t.next_batch(1000)
+x_test, y_test = t.next_batch(100)
 
 YY = []
 for y in Y:
