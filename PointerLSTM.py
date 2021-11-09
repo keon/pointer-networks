@@ -69,7 +69,7 @@ class PointerLSTM(keras.layers.Layer):
 
     def call(self, x, training=None, mask=None, states=None):
         """
-        :param Tensor x: Should be the output of the decoder
+        :param Tensor x: Should be the output of the encoder
         :param Tensor states: last state of the decoder
         :param Tensor mask: The mask to apply
         :return: Pointers probabilities
