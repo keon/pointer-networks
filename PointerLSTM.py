@@ -1,6 +1,7 @@
+
 import keras.backend as K
 from keras.activations import tanh, softmax
-from keras.engine import InputSpec
+from tensorflow.keras.layers import InputSpec
 from keras.layers import LSTM
 import keras
 
@@ -11,7 +12,7 @@ class Attention(keras.layers.Layer):
     """
 
     def __init__(self, hidden_dimensions, name='attention'):
-        super(Attention, self).__init__(name=name, trainable=True)
+        super(Attention, self).__init__()
         self.W1 = keras.layers.Dense(hidden_dimensions, use_bias=False)
         self.W2 = keras.layers.Dense(hidden_dimensions, use_bias=False)
         self.V = keras.layers.Dense(1, use_bias=False)
@@ -56,9 +57,8 @@ class PointerLSTM(keras.layers.Layer):
         PointerLSTM
     """
 
-    def __init__(self, hidden_dimensions, name='pointer', **kwargs):
-        super(PointerLSTM, self).__init__(
-            hidden_dimensions, name=name, **kwargs)
+    def __init__(self, hidden_dimensions, name='pointer'):
+        super(PointerLSTM, self).__init__()
         self.hidden_dimensions = hidden_dimensions
         self.attention = Attention(hidden_dimensions)
         self.decoder = Decoder(hidden_dimensions)
