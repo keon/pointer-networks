@@ -18,8 +18,8 @@ def scheduler(epoch):
 
 print("preparing dataset...")
 t = tsp.Tsp()
-X, Y = t.next_batch(100)
-x_test, y_test = t.next_batch(100)
+X, Y = t.next_batch(1000)
+x_test, y_test = t.next_batch(1000)
 
 YY = []
 for y in Y:
@@ -47,5 +47,5 @@ model.fit(X, YY, epochs=nb_epochs, batch_size=64,)
 print(model.predict(x_test))
 print('evaluate : ',model.evaluate(x_test,to_categorical(y_test)))
 print("------")
-print(to_categorical(y_test))
+#print(to_categorical(y_test))
 model.save_weights('model_weight_100.hdf5')

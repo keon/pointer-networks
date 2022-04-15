@@ -1,4 +1,4 @@
-
+import tensorflow
 import keras.backend as K
 from keras.activations import tanh, softmax
 from tensorflow.keras.layers import InputSpec
@@ -92,17 +92,25 @@ class PointerLSTM(keras.layers.Layer):
                                              initial_states,
                                              go_backwards=self.decoder.lstm.go_backwards,
                                              constants=constants,
-                                             input_length=input_shape[1])
+                                             input_length=input_shape[1],
+                                            unroll = True)
 
         return outputs
+    
+    
 
     def step(self, x_input, states):
+       
         x_input = K.expand_dims(x_input,1)
         input_shape = self.input_spec[0].shape
         en_seq = states[-1]
         _, [h, c] = self.decoder(x_input, states[:-1])
+
         dec_seq = K.repeat(h, input_shape[1])
+
+      
         probs = self.attention(dec_seq, en_seq)
+        print(probs)       
         return probs, [h, c]
 
     def get_output_shape_for(self, input_shape):
